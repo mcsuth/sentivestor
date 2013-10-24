@@ -1,0 +1,20 @@
+<h2>Monitored Symbols</h2>
+<%= link_to "Add Symbol", new_stock_path %><br>
+
+
+<%= @quote %>
+<br>
+<% @user.stocks.each do |symb| %>
+	<%= render "stock", stock: symb %>
+	<%= @sentiment %><br>
+	<hr>
+	<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
+<% end %>
+
+
+
+<!-- <%= @stocker %> -->
+<!-- <%= @user.stocks %> THIS DISPLAYS THE USERS SAVED SYMBOLS-->
+<!-- <%= @current_user.inspect %> THIS DISPLAYS THE CURRENT USER'S INFO IN THE TABLE-->
+<!-- <%= @user.inspect %> THIS DISPLAYS THE CURRENT USER'S INFO IN THE TABLE-->
+<!-- <%= @stocks %>  THIS DISPLAYS ALL STOCKS INCLUDING OTHER ONES IN OTHER ACCOUNTS-->

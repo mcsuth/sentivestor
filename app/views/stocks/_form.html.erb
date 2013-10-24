@@ -1,0 +1,7 @@
+<h2>Collect Symbols</h2>
+<%= form_for @stock do |f| %>
+	<%= f.text_field :tickersymbol, size: "25", placeholder: "Symbol" %> <%= f.text_field :company, size: "45", placeholder: "Description of symbol" %> <%= f.hidden_field :user_id, :value => current_user.id.to_s %> <%= f.submit "Add Symbol" %>
+<% end %>
+<br>
+<%= link_to "Return", stocks_path %>
+<br><br>

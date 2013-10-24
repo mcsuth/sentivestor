@@ -1,0 +1,16 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+
+	<h2>You searched for: </h2>
+	<h2><%= @q %></h2>
+
+	<h2>Sentiment Analysis of Tweets</h2>
+	<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
+
+	<h2>Lastest Tweet(s): </h2>
+	<% @tweets.each do |tweet| %>
+		<p><a href="http://www.twitter.com/<%= tweet.user.username %>"><img src="<%= tweet.profile_image_url %>" width="2%" height="auto" align="middle"></a>
+			<%= tweet.text %>
+			(<%= tweet.user.location %>)
+			(<%= tweet.user.time_zone %>)
+		</p>
+	<% end %>

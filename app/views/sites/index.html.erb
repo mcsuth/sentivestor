@@ -1,0 +1,11 @@
+	<h2>Search For Stock Ticker</h2>
+	<form method="post" action="/sites">
+		<input type="text" placeholder="STOCK TICKER" name="q">
+		<input type="submit">
+	</form>
+	<br><br>
+	<h2>Recent Tweets</h2>
+	<% @tweets.each do |tweet| %>
+		<a href="http://www.twitter.com/<%= tweet.user.username %>"><img src="<%= tweet.profile_image_url %>" width="2%" height="auto" align="middle"></a> <%= tweet.text %><br><br>
+	<% end %>
+

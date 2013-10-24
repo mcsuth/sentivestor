@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CURRENT CONFIDENCE</title>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="menubar">
+	<% unless current_user%>
+		<a href="/users/new">SIGN UP</a> |	<a href="/sessions/new">LOG IN</a>
+	<% end %>
+	<% if current_user %>
+		HI <%= @current_user.name.upcase %>! | <a href="/">SEARCH</a> | <a href="/stocks">SAVED SEARCHES</a> | <a href="/users/<%= @current_user.id %>">ABOUT</a> | <a href="/logout">LOGOUT</a>
+	<% else %>
+	<% end %>
+</div>
+
+<div class="content">
+	<a href="/" target="_self"><img src="http://unrestrictedstock.com/wp-content/uploads/geometric-shapes-3-dimensional-hallow-cube-free-stock-vector.jpg" width="20%" align="left" class="cube"></a>
+	<div class="loginornew">
+			<div class="contentinside">
+				<%= yield %>
+				<h2>About Current Confidence</h2>
+				<p>Pickled food truck messenger bag, fap Odd Future Tonx artisan sartorial sustainable dolore farm-to-table viral meh tempor hoodie. McSweeney's pop-up consectetur et, typewriter Shoreditch minim fingerstache flannel Marfa in pariatur. You probably haven't heard of them Tonx four loko +1 culpa, dolore Truffaut VHS. Put a bird on it veniam sapiente, tattooed viral YOLO dreamcatcher cliche officia fap Vice esse non. Put a bird on it freegan magna, salvia Neutra ex hella pork belly. Carles slow-carb YOLO gastropub readymade tousled. Forage drinking vinegar Austin, laboris raw denim bespoke post-ironic Intelligentsia tote bag cliche.</p>
+			</div>
+	</div>
+</div>
+
+</body>
+</html>
