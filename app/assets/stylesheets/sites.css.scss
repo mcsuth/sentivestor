@@ -16,7 +16,7 @@ a {
 	color: gold;
 }
 a:hover {
-	color: #303030;
+	color: #CCC;
 }
 img.cube {
 	padding: 60px;
@@ -33,6 +33,7 @@ div.menubar {
 div.content {
 	padding:20px;
 	background-color: rgba(255,255,255,0.93);
+
 }
 div.contentinside {
 	width:700px;
@@ -45,4 +46,23 @@ div.loginornew {
 input {
 	border: 1px solid #000;
 	padding: 5px;
+}
+@media (max-width: 600px) {
+	img.cube {
+		display: none;
+	}
+	div.menubar {
+		font-size: 10px;
+	}
+	div.contentinside {
+		width:250px;
+	}
+	div.loginornew {
+		padding: 0px;
+		margin: 0px;
+	}
+	input {
+		border: 1px solid #000;
+		padding: 5px;
+	}
 }
