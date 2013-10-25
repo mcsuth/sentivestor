@@ -32,7 +32,6 @@ def index
 
   		if @q.length > 5
   			redirect_to "/"
-  			@notstock = "Please Type in a 2-4 Ticker"
   		end
   		@sentimentneg = (@sentiment.count("negative").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
   		@sentimentpos = (@sentiment.count("positive").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
