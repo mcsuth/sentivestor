@@ -1,15 +1,15 @@
 <h2>Monitored Symbols</h2>
 <%= link_to "Add Symbol", new_stock_path %><br>
-
-
-<%= @quote %>
 <br>
-<%= @quotes %><br>
-<% @user.stocks.each_with_index do |symb, idx| %>
-	<%= render "stock", stock: symb %>
+<h2>Sentiment Analysis of All Monitored Symbols</h2>
+<hr>
+<%= pie_chart({"Positives" => @sentiments.flatten.count("positive"), "Negatives" => @sentiments.flatten.count("negative"), "Neutrals" => @sentiments.flatten.count("neutral")}) %>
+<br>
+	<% @user.stocks.each_with_index do |symb, idx| %>
+		<%= render "stock", stock: symb %>
 		<hr>
-	<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
-<% end %>
+		<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
+	<% end %>
 
 
 

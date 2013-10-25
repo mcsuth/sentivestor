@@ -12,7 +12,7 @@ class StocksController < ApplicationController
 				@stocker.each do |symbol|
 
 					@symbol = symbol.tickersymbol
-					puts "$$$$$$$"
+					puts "$$$$$$$$$$$$$$$$$$$$$$$$"
 					puts @symbol
 
 					    Twitter.configure do |config|
@@ -21,7 +21,7 @@ class StocksController < ApplicationController
 						    config.oauth_token = '1364699594-8WLNvPFBgpW2bw2jRWWB5hztJw4qzbWPOm4Tult'
 						    config.oauth_token_secret = 'nMxW06tWdhDsKY3Kan3jLE7zEm7yMcOWAgn839CKd2k'
 
-						    @tweets = Twitter.search(@symbol, :lang => "en", :count => 5, :result_type => "recent").results
+						    @tweets = Twitter.search(@symbol, :lang => "en", :count => 10, :result_type => "recent").results
 
 							  		@sentiment = []
 							  		@tweets.each do |tweet|
@@ -31,14 +31,13 @@ class StocksController < ApplicationController
 											@sentiment << JSON.parse(request.body)["polarity"]
 
 							  		end
+
 							  		@sentiments << @sentiment
 
-												puts "$$$$$$$$$$$$$$$$$$$$$$$$"
-											  puts @sentiment
+										puts "$$$$$$$$$$$$$$$$$$$$$$$$"
+									  puts @sentiment
 
-					  		@sentimentneg = (@sentiment.count("negative").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
-					  		@sentimentpos = (@sentiment.count("positive").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
-					  		@sentimentneu = (@sentiment.count("neutral").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
+
 
 					  			stockticker = @symbol.upcase
 									@quotes = YahooFinance::get_standard_quotes(stockticker)
