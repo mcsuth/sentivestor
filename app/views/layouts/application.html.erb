@@ -9,12 +9,10 @@
 </head>
 <body>
 <div class="menubar">
-	<% unless current_user%>
-		<a href="/users/new">SIGN UP</a> |	<a href="/sessions/new">LOG IN</a>
-	<% end %>
 	<% if current_user %>
 		HI <%= @current_user.name.upcase %>! | <a href="/">SEARCH</a> | <a href="/stocks">SAVED SEARCHES</a> | <a href="/users/<%= @current_user.id %>">ABOUT</a> | <a href="/logout">LOGOUT</a>
-	<% else %>
+		<% else %>
+		<a href="/users/new">SIGN UP</a> |	<a href="/sessions/new">LOG IN</a>
 	<% end %>
 </div>
 

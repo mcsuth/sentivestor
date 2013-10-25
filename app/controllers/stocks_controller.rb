@@ -7,12 +7,13 @@ class StocksController < ApplicationController
 			@user = User.find(current_user.id)
 			# render :index
 			@stocker = @user.stocks
+
+								@sentiments = []
 				@stocker.each do |symbol|
-					# puts "$"
+
 					@symbol = symbol.tickersymbol
-
-
-
+					puts "$$$$$$$"
+					puts @symbol
 
 					    Twitter.configure do |config|
 						    config.consumer_key = 'C0PCtX0ro4wLKQyIhxkw'
@@ -22,18 +23,15 @@ class StocksController < ApplicationController
 
 						    @tweets = Twitter.search(@symbol, :lang => "en", :count => 5, :result_type => "recent").results
 
-
-								@sentiment = []
-
-
+							  		@sentiment = []
 							  		@tweets.each do |tweet|
 							  			@text = tweet.text
-
 
 							  			request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
 											@sentiment << JSON.parse(request.body)["polarity"]
 
 							  		end
+							  		@sentiments << @sentiment
 
 												puts "$$$$$$$$$$$$$$$$$$$$$$$$"
 											  puts @sentiment

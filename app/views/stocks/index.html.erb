@@ -4,11 +4,11 @@
 
 <%= @quote %>
 <br>
-<% @user.stocks.each do |symb| %>
+<%= @quotes %><br>
+<% @user.stocks.each_with_index do |symb, idx| %>
 	<%= render "stock", stock: symb %>
-	<%= @sentiment %><br>
-	<hr>
-	<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
+		<hr>
+	<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
 <% end %>
 
 
