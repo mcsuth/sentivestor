@@ -16,6 +16,8 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'sqlite3'
+  gem "nyan-cat-formatter"
+  gem "konacha"
 end
 
 # Gems used only for assets and not required
