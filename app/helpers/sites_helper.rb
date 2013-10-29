@@ -21,22 +21,18 @@ def index
 
 	    @tweets = Twitter.search(@q, :lang => "en", :count => 15, :result_type => "recent").results
 			@sentiment = []
-			@charater = []
 
   		@tweets.each do |tweet|
   			@text = tweet.text
   			request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
 				@sentiment << JSON.parse(request.body)["polarity"]
-				@charater << JSON.parse(request.body)["char_count"]
   		end
 
-  		if @q.length > 5
-  			redirect_to "/"
+  		if @q.length > 4
+	      flash[:errors] = "Not a 4 character symbol."
+	      redirect_to "/"
   		end
-  		@sentimentneg = (@sentiment.count("negative").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
-  		@sentimentpos = (@sentiment.count("positive").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
-  		@sentimentneu = (@sentiment.count("neutral").to_f/(@sentiment.count("positive").to_f+@sentiment.count("negative").to_f+@sentiment.count("neutral").to_f)*100)
-  		@chart = ("http://chart.finance.yahoo.com/z?s=@q&t=6m&q=l")
+
 
 		end
 	end

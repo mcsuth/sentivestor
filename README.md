@@ -2,7 +2,7 @@
 <hr>
 I wanted to create an application that will allow you to search for #ABC and get the sentiment value of the tweets that mention #ABC.
 
-* Current Confidence is currently in its BETA stage. More features to be added in the future. 
+* Current Confidence is currently in its BETA stage. More features to be added in the future.
 
 ***HOW TO USE IT***
 
@@ -28,7 +28,7 @@ I wanted to create an application that will allow you to search for #ABC and get
 	4. [Page #2] Application will yield results from API #2 and display it out on the final page.
 
 	5. [Model #1] User Log-in/Authentication
-	
+
 	6. [Model #2] Allow users to create portfolio of saved items/companies
 
 	7. [Gem #2] Graphical Representation of Sentiments
@@ -39,8 +39,20 @@ I wanted to create an application that will allow you to search for #ABC and get
 		* http://autoc.finance.yahoo.com/autoc?query=google&callback=YAHOO.Finance.SymbolSuggest.ssCallback
 
 
-<!--***RAILS***
 
+
+***RECOMMENDATIONS***
+
+	1. Smaller methods
+	2. OK -- Delete test code in Stocks Controller (ex: puts $$$$$$$$$$$$$$$)
+	3. Rename params (ex: "blah")
+	4. Move API calls from controller to model
+	5. OK -- Add flash errors
+
+
+
+
+<!--***RAILS***
 	1. rails new current_confidence
 	2. cd current_confidence $ subl .
 	3. Gemfile: add the below gems @ the top of the file and then in the terminal: bundle install

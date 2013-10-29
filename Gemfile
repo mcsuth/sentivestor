@@ -5,7 +5,6 @@ gem 'rails', '3.2.14'
 gem "twitter"
 gem "chartkick"
 gem 'pry-rails'
-gem "yahoofinance"
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -39,6 +38,7 @@ group :production do
 end
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
+
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

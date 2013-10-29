@@ -10,11 +10,3 @@
 		<hr>
 		<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
 	<% end %>
-
-
-
-<!-- <%= @stocker %> -->
-<!-- <%= @user.stocks %> THIS DISPLAYS THE USERS SAVED SYMBOLS-->
-<!-- <%= @current_user.inspect %> THIS DISPLAYS THE CURRENT USER'S INFO IN THE TABLE-->
-<!-- <%= @user.inspect %> THIS DISPLAYS THE CURRENT USER'S INFO IN THE TABLE-->
-<!-- <%= @stocks %>  THIS DISPLAYS ALL STOCKS INCLUDING OTHER ONES IN OTHER ACCOUNTS-->

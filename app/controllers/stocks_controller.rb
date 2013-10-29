@@ -3,17 +3,16 @@ class StocksController < ApplicationController
 		def index
 
 			@stocks = Stock.all
-			# @stock = Stock.find(current_user.name)
+
 			@user = User.find(current_user.id)
-			# render :index
+
 			@stocker = @user.stocks
 
 								@sentiments = []
+
 				@stocker.each do |symbol|
 
 					@symbol = symbol.tickersymbol
-					puts "$$$$$$$$$$$$$$$$$$$$$$$$"
-					puts @symbol
 
 					    Twitter.configure do |config|
 						    config.consumer_key = 'C0PCtX0ro4wLKQyIhxkw'
@@ -23,27 +22,15 @@ class StocksController < ApplicationController
 
 						    @tweets = Twitter.search(@symbol, :lang => "en", :count => 10, :result_type => "recent").results
 
-							  		@sentiment = []
-							  		@tweets.each do |tweet|
-							  			@text = tweet.text
-
-							  			request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
-											@sentiment << JSON.parse(request.body)["polarity"]
-
-							  		end
+					  		@sentiment = []
+					  		@tweets.each do |tweet|
+					  			@text = tweet.text
+					  			request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
+									@sentiment << JSON.parse(request.body)["polarity"]
+					  		end
 
 							  		@sentiments << @sentiment
 
-										puts "$$$$$$$$$$$$$$$$$$$$$$$$"
-									  puts @sentiment
-
-
-
-					  			stockticker = @symbol.upcase
-									@quotes = YahooFinance::get_standard_quotes(stockticker)
-									@price = @quotes[stockticker].lastTrade
-									@name = @quotes[stockticker].name
-									@date = @quotes[stockticker].date
 
 							end
 				end
@@ -63,6 +50,10 @@ class StocksController < ApplicationController
 
 		def show
 			@stock = Stock.find(params[:blah])
+  		if @stock.tickersymbol.length > 4
+	      flash[:errors] = "Not a 4 character symbol!"
+	      redirect_to "/stocks/new"
+  		end
 		end
 
 		def edit

@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path
     else
-      redirect_to new_session_path
+      flash[:errors] = "Username or password not found."
+      render :new
     end
   end
 

@@ -11,12 +11,6 @@ module SessionsHelper
 
 	def authenticate
 		redirect_to new_session_path if !current_user
-		# current_user ? true : false
-		# if current_user
-		# 	return true
-		# else
-		# 	return false
-		# end
 	end
 
 	def sign_out
