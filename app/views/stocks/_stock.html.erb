@@ -1,4 +1,6 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 	<h2><%= stock.tickersymbol.upcase %></h2>
 	:: <%= stock.company %>	[<%= link_to "Remove", stock_path(stock), method: :delete %> <%= link_to "Edit", edit_stock_path(stock) %>]<br>
+  <br>
+  <%= link_to "Return", stocks_path %>
 <br>

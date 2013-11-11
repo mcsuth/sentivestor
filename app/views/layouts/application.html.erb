@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>CURRENT CONFIDENCE</title>
+  <title>SentiVestor</title>
   <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -16,16 +16,17 @@
 		<a href="/users/new">SIGN UP</a> |	<a href="/sessions/new">LOG IN</a>
 	<% end %>
 </div>
-
 <div class="content">
-	<br><br>
 	<a href="/" target="_self"><img src="/assets/logo.jpg" width="20%" height="auto" align="left" class="cube"></a>
 	<div class="loginornew">
 			<div class="contentinside">
+				<h1 style="font-size: 50px;">SentiVestor</h1>
 				<%= yield %>
 				<br>
-				<h2>Current Confidence</h2>
+				<h2>SentiVestor</h2>
 				<p>This web application was create with Behavioral Economics/Finance in mind. Search for a stock symbol, get recent tweets on it, and see the sentiment analysis of the tweets.</p>
+				<p>Built using: Ruby on Rails, HTML5, CSS3, KickChart</p>
+				<p>By: <a href="http://www.linkedin.com/in/seimith" target="_blank">Smith Suth</a>, student @ <a href="https://generalassemb.ly/education/web-development-immersive" target="_new">GA (WDI)</a></p>
 				<br>
 				<h2>How to Use it?</h2>
 				<p>
