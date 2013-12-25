@@ -6,7 +6,7 @@ body {
 	background-position: center;
 	background-repeat: no-repeat;
 	font-family: Arial;
-	font-size: 12px;
+	font-size: 15px;
 	margin: 0px;
 	padding: 0px;
 }
@@ -22,9 +22,16 @@ img.cube {
 	padding: 60px;
 	opacity: 0.1;
 }
-div.menubar {
+img.twittericon {
+	border-radius: 100%;
+	border: 1px solid #000;
+	margin: 5px;
+	width: 50px;
+	height: auto;
+}
+div.menubar, div.menubarmini {
 	background-color: #000;
-	font-size: 12px;
+	font-size: 20px;
 	font-weight: bold;
 	text-align: right;
 	padding: 5px;
@@ -47,15 +54,31 @@ input {
 	border: 1px solid #000;
 	padding: 5px;
 }
-@media (max-width: 600px) {
+h1 {
+	padding: 0;
+	margin: 0;
+}
+div.menubarmini {
+	display: none;
+}
+@media (max-width: 900px) {
 	img.cube {
 		display: none;
 	}
 	div.menubar {
-		font-size: 10px;
+		display: none;
+	}
+	div.menubarmini {
+		display: block;
+		text-align: center;
+	}
+	div.content {
+		margin: 0;
+		padding: 0;
 	}
 	div.contentinside {
-		width:250px;
+		width: 90%;
+		padding: 20px;
 	}
 	div.loginornew {
 		padding: 0px;
@@ -65,8 +88,4 @@ input {
 		border: 1px solid #000;
 		padding: 5px;
 	}
-}
-h1 {
-	padding: 0;
-	margin: 0;
 }

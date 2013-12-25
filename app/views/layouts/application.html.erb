@@ -6,7 +6,6 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-
 </head>
 <body>
 <div class="menubar">
@@ -16,24 +15,33 @@
 		<a href="/users/new">SIGN UP</a> |	<a href="/sessions/new">LOG IN</a>
 	<% end %>
 </div>
+<div class="menubarmini">
+	<% if current_user %>
+		<a href="/">SEARCH</a> | <a href="/stocks">SAVED SEARCHES</a><br>
+		<a href="/users/<%= @current_user.id %>">ABOUT</a> | <a href="/logout">LOGOUT</a>
+		<% else %>
+		<a href="/users/new">SIGN UP</a> | <a href="/sessions/new">LOG IN</a>
+	<% end %>
+</div>
+
 <div class="content">
 	<a href="/" target="_self"><img src="/assets/logo.jpg" width="20%" height="auto" align="left" class="cube"></a>
 	<div class="loginornew">
 			<div class="contentinside">
 				<h1 style="font-size: 50px;">SentiVestor</h1>
-				<%= yield %>
-				<br>
-				<h2>SentiVestor</h2>
-				<p>This web application was create with Behavioral Economics/Finance in mind. Search for a stock symbol, get recent tweets on it, and see the sentiment analysis of the tweets.</p>
-				<p>Built using: Ruby on Rails, HTML5, CSS3, KickChart</p>
-				<p>By: <a href="http://www.linkedin.com/in/seimith" target="_blank">Smith Suth</a>, student @ <a href="https://generalassemb.ly/education/web-development-immersive" target="_new">GA (WDI)</a></p>
-				<br>
-				<h2>How to Use it?</h2>
-				<p>
-					1. Sign in with (username: <b>demo@demo.com</b> & password: <b>demo</b>) to see the application in action!<br>
-					2. Search a stock symbol & see 10 recent Twitter Tweet that contain that stock symbol<br>
-					4. Add stock symbols to follow (link in the top menu bar)<br>
-					5. View colorful sentiment analysis pie charts!</p>
+				<% if current_user %>
+					<%= yield %>
+				<% else %>
+					<br>
+					<h2>SentiVestor</h2>
+					<p>This web application was create with Behavioral Economics/Finance in mind. Search for a stock symbol, get recent tweets on it, and see the sentiment analysis of the tweets.</p>
+					<h2>How to Use it?</h2>
+					<p>
+						1. Sign in with (username: <b>demo@demo.com</b> & password: <b>demo</b>) to see the application in action!<br>
+						2. Search a stock symbol & see 10 recent Twitter Tweet that contain that stock symbol<br>
+						4. Add stock symbols to follow (link in the top menu bar)<br>
+						5. View colorful sentiment analysis pie charts!</p>
+				<% end %>
 			</div>
 	</div>
 </div>

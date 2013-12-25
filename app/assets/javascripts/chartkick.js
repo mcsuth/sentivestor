@@ -141,7 +141,7 @@
       xAxis: {
         labels: {
           style: {
-            fontSize: "12px"
+            fontSize: "10px"
           }
         }
       },
@@ -151,7 +151,7 @@
         },
         labels: {
           style: {
-            fontSize: "12px"
+            fontSize: "10px"
           }
         }
       },
@@ -422,8 +422,8 @@
       waitForLoaded(function() {
         var chartOptions = {
           chartArea: {
-            top: "10%",
-            height: "80%"
+            top: "5%",
+            height: "90%"
           }
         };
         var options = merge(merge(defaultOptions, chartOptions), opts.library || {});
