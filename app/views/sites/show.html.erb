@@ -1,14 +1,15 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
-	<h2>You searched for: </h2>
-	<h3 style="margin-left: 50px;">
-		<%= @ticker_info[1]%> (<%= @ticker_info[0]%>)
-	</h3>
+<h2>You searched for: </h2>
+
+<h3 style="margin-left: 50px;">
+	<%= @ticker_info[1]%> (<%= @ticker_info[0]%>)
+</h3>
 
 <% if @ticker_info[2] == 0.0 %>
 	Ticker not found. No information available. Please search again.
-	<% else %>
-	<h4 style="margin-left: 75px;">
+<% else %>
+	<h4 style="margin-left: 60px;">
 		<ul>
 			Date: <%= @ticker_info[6]%><br/>
 			Open Price: <%= @ticker_info[2]%><br/>
@@ -17,22 +18,20 @@
 			Percent Change: <%= @ticker_info[5]%><br/>
 		</ul>
 	</h4>
-	<% end %>
+<% end %>
 
-	<h2>Sentiment Analysis of Tweets</h2>
+<h2>Sentiment Analysis of Tweets</h2>
 
-  <% if @ticker_info[2] == 0.0 %>
-  	No chart available
-  	<% else %>
-		<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
-
-
+<% if @ticker_info[2] == 0.0 %>
+	No chart available
+<% else %>
+	<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
 	<h2>Lastest Tweet(s): </h2>
 	<% @tweets.each do |tweet| %>
 		<p><a href="http://www.twitter.com/<%= tweet.user.username %>"><img class="twittericon" src="<%= tweet.profile_image_url %>" width="2%" height="auto" align="middle"></a>
-			<%= tweet.text %>
-			(<%= tweet.user.location %>)
-			(<%= tweet.user.time_zone %>)
+		<%= tweet.text %>
+		<!--(<#%= tweet.user.location %>)
+		(<#%= tweet.user.time_zone %>) -->
 		</p>
 	<% end %>
-	  <% end %>
+<% end %>

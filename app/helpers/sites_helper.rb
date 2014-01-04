@@ -35,7 +35,7 @@ def index
   	    config.oauth_token = '1364699594-8WLNvPFBgpW2bw2jRWWB5hztJw4qzbWPOm4Tult'
   	    config.oauth_token_secret = 'nMxW06tWdhDsKY3Kan3jLE7zEm7yMcOWAgn839CKd2k'
 
-  	    @tweets = Twitter.search(@q, :lang => "en", :count => 15, :result_type => "recent").results
+  	    @tweets = Twitter.search(@q, :lang => "en", :count => 5, :result_type => "recent").results
   			@sentiment = []
 
     		@tweets.each do |tweet|

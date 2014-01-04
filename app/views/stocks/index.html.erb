@@ -1,12 +1,16 @@
 <h2>Monitored Symbols</h2>
-<%= link_to "Add Symbol", new_stock_path %><br>
-<br>
+<%= link_to "Add Symbol", new_stock_path %>
+<p><%= flash[:errors] %></p>
+
 <h2>Sentiment Analysis of All Monitored Symbols</h2>
 <hr>
-<%= pie_chart({"Positives" => @sentiments.flatten.count("positive"), "Negatives" => @sentiments.flatten.count("negative"), "Neutrals" => @sentiments.flatten.count("neutral")}) %>
-<br>
-	<% @user.stocks.each_with_index do |symb, idx| %>
-		<%= render "stock", stock: symb %>
-		<hr>
-		<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
-	<% end %>
+<% if @sentiments.empty? %>
+  Nothing is here! Start saving some tickers to track.
+<% else %>
+  <%= pie_chart({"Positives" => @sentiments.flatten.count("positive"), "Negatives" => @sentiments.flatten.count("negative"), "Neutrals" => @sentiments.flatten.count("neutral")}) %><br>
+  <% @user.stocks.each_with_index do |symb, idx| %>
+  	<%= render "stock", stock: symb %>
+  	<hr>
+  	<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
+  <% end %>
+<% end %>
