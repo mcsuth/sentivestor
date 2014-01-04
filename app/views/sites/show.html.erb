@@ -5,6 +5,9 @@
 		<%= @ticker_info[1]%> (<%= @ticker_info[0]%>)
 	</h3>
 
+<% if @ticker_info[2] == 0.0 %>
+	Ticker not found. No information available. Please search again.
+	<% else %>
 	<h4 style="margin-left: 75px;">
 		<ul>
 			Date: <%= @ticker_info[6]%><br/>
@@ -14,6 +17,7 @@
 			Percent Change: <%= @ticker_info[5]%><br/>
 		</ul>
 	</h4>
+	<% end %>
 
 	<h2>Sentiment Analysis of Tweets</h2>
 
