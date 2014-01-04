@@ -148,6 +148,7 @@ GEM
     uglifier (2.3.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    yahoofinance (1.2.2)
 
 PLATFORMS
   ruby
@@ -170,3 +171,4 @@ DEPENDENCIES
   twitter
   typhoeus
   uglifier (>= 1.0.3)
+  yahoofinance (~> 1.2.2)

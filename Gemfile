@@ -1,10 +1,13 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
+
 gem 'typhoeus'
 gem 'rails', '3.2.14'
 gem "twitter"
 gem "chartkick"
 gem 'pry-rails'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem "yahoofinance", "~> 1.2.2"
 
 group :development, :test do
   gem 'rspec-rails'
@@ -27,6 +30,3 @@ group :production do
   gem 'pg', '0.15.1'
   gem 'rails_12factor', '0.0.2'
 end
-
-gem 'bcrypt-ruby', '~> 3.0.0'
-

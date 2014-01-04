@@ -1,10 +1,27 @@
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 	<h2>You searched for: </h2>
-	<h3 style="margin-left: 50px;"><%= @q %></h3>
+	<h3 style="margin-left: 50px;">
+		<%= @ticker_info[1]%> (<%= @ticker_info[0]%>)
+	</h3>
+
+	<h4 style="margin-left: 75px;">
+		<ul>
+			Date: <%= @ticker_info[6]%><br/>
+			Open Price: <%= @ticker_info[2]%><br/>
+			Day High: <%= @ticker_info[3]%><br/>
+			Day Low: <%= @ticker_info[4]%><br/>
+			Percent Change: <%= @ticker_info[5]%><br/>
+		</ul>
+	</h4>
 
 	<h2>Sentiment Analysis of Tweets</h2>
-	<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
+
+  <% if @ticker_info[2] == 0.0 %>
+  	No chart available
+  	<% else %>
+		<%= pie_chart({"Positives" => @sentiment.count("positive"), "Negatives" => @sentiment.count("negative"), "Neutrals" => @sentiment.count("neutral")}) %>
+
 
 	<h2>Lastest Tweet(s): </h2>
 	<% @tweets.each do |tweet| %>
@@ -14,3 +31,4 @@
 			(<%= tweet.user.time_zone %>)
 		</p>
 	<% end %>
+	  <% end %>
