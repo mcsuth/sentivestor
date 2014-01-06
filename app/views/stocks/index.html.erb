@@ -8,9 +8,15 @@
   Nothing is here! Start saving some tickers to track.
 <% else %>
   <%= pie_chart({"Positives" => @sentiments.flatten.count("positive"), "Negatives" => @sentiments.flatten.count("negative"), "Neutrals" => @sentiments.flatten.count("neutral")}) %><br>
+
   <% @user.stocks.each_with_index do |symb, idx| %>
   	<%= render "stock", stock: symb %>
-  	<hr>
-  	<%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
+    <%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
+    <p>
+      <%= @ticker_info.count %><br>
+      <%= @ticker_info[0] %><br>
+      <%= @ticker_info[1] %><br>
+    </p>
+
   <% end %>
 <% end %>

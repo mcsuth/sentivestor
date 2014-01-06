@@ -6,6 +6,7 @@ class StocksController < ApplicationController
 		@user = User.find(current_user.id)
 		@stocker = @user.stocks
 		@sentiments = []
+		@ticker_info = []
 		@stocker.each do |symbol|
 			@symbol = symbol.tickersymbol
 	    Twitter.configure do |config|
@@ -21,6 +22,21 @@ class StocksController < ApplicationController
 					@sentiment << JSON.parse(request.body)["polarity"]
 	  		end
 	  		@sentiments << @sentiment
+
+		    quote_type = YahooFinance::StandardQuote
+		    quote_symbol = @symbol
+		    each_item = []
+		    YahooFinance::get_quotes(quote_type, quote_symbol) do |qt|
+		      each_item << qt.name
+		      each_item << qt.open
+		      each_item << qt.dayHigh
+		      each_item << qt.dayLow
+		      each_item << qt.changePercent
+		      each_item << qt.date
+		    end
+				puts each_item
+				@ticker_info << each_item
+				puts "=============="
 			end
 		end
 	end
