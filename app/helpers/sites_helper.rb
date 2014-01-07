@@ -20,9 +20,9 @@ def index
     YahooFinance::get_quotes( quote_type, quote_symbol ) do |qt|
       @ticker_info << qt.symbol
       @ticker_info << qt.name
-      @ticker_info << qt.open
-      @ticker_info << qt.dayHigh
-      @ticker_info << qt.dayLow
+      @ticker_info << qt.open.round(2)
+      @ticker_info << qt.dayHigh.round(2)
+      @ticker_info << qt.dayLow.round(2)
       @ticker_info << qt.changePercent
       @ticker_info << qt.date
     end

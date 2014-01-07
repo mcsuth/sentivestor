@@ -28,9 +28,9 @@ class StocksController < ApplicationController
 				each_stock = []
 				YahooFinance::get_quotes(quote_type, quote_symbol) do |qt|
 					each_stock << qt.name
-					each_stock << qt.open
-					each_stock << qt.dayHigh
-					each_stock << qt.dayLow
+					each_stock << qt.open.round(2)
+					each_stock << qt.dayHigh.round(2)
+					each_stock << qt.dayLow.round(2)
 					each_stock << qt.changePercent
 					each_stock << qt.date
 				end
