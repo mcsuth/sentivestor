@@ -9,34 +9,32 @@ class StocksController < ApplicationController
 		@ticker_info = []
 		@stocker.each do |symbol|
 			@symbol = symbol.tickersymbol
-	    Twitter.configure do |config|
-		    config.consumer_key = 'C0PCtX0ro4wLKQyIhxkw'
-		    config.consumer_secret = 'kHzF3UmXHMcEZV4B7K2LEB5jTyjw9XimwoiFMKl9c'
-		    config.oauth_token = '1364699594-8WLNvPFBgpW2bw2jRWWB5hztJw4qzbWPOm4Tult'
-		    config.oauth_token_secret = 'nMxW06tWdhDsKY3Kan3jLE7zEm7yMcOWAgn839CKd2k'
-		    @tweets = Twitter.search(@symbol, :lang => "en", :count => 10, :result_type => "recent").results
-	  		@sentiment = []
-	  		@tweets.each do |tweet|
-	  			@text = tweet.text
-	  			request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
+		Twitter.configure do |config|
+			config.consumer_key = 'C0PCtX0ro4wLKQyIhxkw'
+			config.consumer_secret = 'kHzF3UmXHMcEZV4B7K2LEB5jTyjw9XimwoiFMKl9c'
+			config.oauth_token = '1364699594-8WLNvPFBgpW2bw2jRWWB5hztJw4qzbWPOm4Tult'
+			config.oauth_token_secret = 'nMxW06tWdhDsKY3Kan3jLE7zEm7yMcOWAgn839CKd2k'
+			@tweets = Twitter.search(@symbol, :lang => "en", :count => 10, :result_type => "recent").results
+				@sentiment = []
+				@tweets.each do |tweet|
+					@text = tweet.text
+					request = Typhoeus.get("https://api.sentigem.com/external/get-sentiment?api-key=beb264c6ed3b2ceceb3fec2b8935f0d8WeqESx3iDdLFpcQ-4T5IOKHP_o7zj0VB&", params: {text: @text})
 					@sentiment << JSON.parse(request.body)["polarity"]
-	  		end
-	  		@sentiments << @sentiment
+				end
+				@sentiments << @sentiment
 
-		    quote_type = YahooFinance::StandardQuote
-		    quote_symbol = @symbol
-		    each_item = []
-		    YahooFinance::get_quotes(quote_type, quote_symbol) do |qt|
-		      each_item << qt.name
-		      each_item << qt.open
-		      each_item << qt.dayHigh
-		      each_item << qt.dayLow
-		      each_item << qt.changePercent
-		      each_item << qt.date
-		    end
-				puts each_item
-				@ticker_info << each_item
-				puts "=============="
+				quote_type = YahooFinance::StandardQuote
+				quote_symbol = @symbol
+				each_stock = []
+				YahooFinance::get_quotes(quote_type, quote_symbol) do |qt|
+					each_stock << qt.name
+					each_stock << qt.open
+					each_stock << qt.dayHigh
+					each_stock << qt.dayLow
+					each_stock << qt.changePercent
+					each_stock << qt.date
+				end
+				@ticker_info << each_stock
 			end
 		end
 	end
@@ -51,17 +49,17 @@ class StocksController < ApplicationController
 
 		ticker = new_stock.tickersymbol
 		quote_type = YahooFinance::StandardQuote
-	  @ticker_info = []
-	  YahooFinance::get_quotes( quote_type, ticker ) do |qt|
-	    @ticker_info << qt.open
-	  end
-	  if @ticker_info != [0.0]
-	  	new_stock = Stock.create(params[:stock])
+		@ticker_info = []
+		YahooFinance::get_quotes( quote_type, ticker ) do |qt|
+		@ticker_info << qt.open
+		end
+		if @ticker_info != [0.0]
+			new_stock = Stock.create(params[:stock])
 			redirect_to stock_path(new_stock.id)
-	  else
-	  	flash[:errors] = "Not a valid stock ticker. Please try again."
-	  	redirect_to "/stocks"
-	  end
+		else
+			flash[:errors] = "Not a valid stock ticker. Please try adding another symbol."
+			redirect_to "/stocks"
+		end
 
 	end
 

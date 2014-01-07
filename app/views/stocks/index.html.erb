@@ -10,13 +10,29 @@
   <%= pie_chart({"Positives" => @sentiments.flatten.count("positive"), "Negatives" => @sentiments.flatten.count("negative"), "Neutrals" => @sentiments.flatten.count("neutral")}) %><br>
 
   <% @user.stocks.each_with_index do |symb, idx| %>
-  	<%= render "stock", stock: symb %>
+    <%= render "stock", stock: symb %>
     <%= pie_chart({"Positives" => @sentiments[idx].count("positive"), "Negatives" => @sentiments[idx].count("negative"), "Neutrals" => @sentiments[idx].count("neutral")}) %>
-    <p>
-      <%= @ticker_info.count %><br>
-      <%= @ticker_info[0] %><br>
-      <%= @ticker_info[1] %><br>
-    </p>
-
+    <table border="0">
+      <tr>
+        <td><b><%= @ticker_info[idx][0] %></b></td>
+        <td><%= @ticker_info[idx][5] %></td>
+      </tr>
+      <tr>
+        <td><b>Open Price</b></td>
+        <td><%= @ticker_info[idx][1] %></td>
+      </tr>
+      <tr>
+        <td><b>Day High</b></td>
+        <td><%= @ticker_info[idx][2] %></td>
+      </tr>
+      <tr>
+        <td><b>Day Low</b></td>
+        <td><%= @ticker_info[idx][3] %></td>
+      </tr>
+      <tr>
+        <td><b>Percent Change</b></td>
+        <td><%= @ticker_info[idx][4] %></td>
+      </tr>
+    </table>
   <% end %>
 <% end %>
